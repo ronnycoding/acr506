@@ -23,7 +23,7 @@
 
   @nest & > a {
     display: block;
-    padding: 1.5em;
+    padding: 0.5em;
 
     @supports (padding-top: env(safe-area-inset-top)) {
       padding-left: calc(env(safe-area-inset-left) + 1.5rem);
@@ -31,7 +31,7 @@
   }
 
   @nest & img, & svg {
-    height: calc(var(--font-base-line-height) * 1.5rem);
+    height: calc(var(--font-base-line-height) * 3rem);
     width: auto;
     color: inherit;
     vertical-align: top;

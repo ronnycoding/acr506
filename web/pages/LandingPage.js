@@ -89,6 +89,8 @@ class LandingPage extends Component {
       slug,
     } = this.props;
 
+    console.log({ props: this.props });
+
     const openGraphImages = openGraphImage
       ? [
           {

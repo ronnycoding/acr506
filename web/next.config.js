@@ -6,6 +6,7 @@ const query = `
 {
   "routes": *[_type == "route"] {
     ...,
+    title,
     disallowRobot,
     includeInSitemap,
     page->{
@@ -17,7 +18,7 @@ const query = `
 }
 `;
 const reduceRoutes = (obj, route) => {
-  const { page = {}, slug = {} } = route;
+  const { page = {}, slug = {}, title = "no title" } = route;
   const { _createdAt, _updatedAt } = page;
   const { includeInSitemap, disallowRobot } = route;
   const path = route["slug"]["current"] === "/" ? "/" : `/${route["slug"]["current"]}`;
@@ -25,6 +26,7 @@ const reduceRoutes = (obj, route) => {
     query: {
       slug: slug.current,
     },
+    title,
     includeInSitemap,
     disallowRobot,
     _createdAt,
@@ -52,8 +54,6 @@ module.exports = withCSS({
           .reduce(reduceRoutes, {}),
         "/custom-page": { page: "/CustomPage" },
       };
-
-      console.log(nextRoutes);
       return nextRoutes;
     });
   },

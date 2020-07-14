@@ -11,11 +11,9 @@ const siteConfigQuery = `
     logo {asset->{extension, url}},
     mainNavigation[] -> {
       ...,
-      "title": page->title
     },
     footerNavigation[] -> {
       ...,
-      "title": page->title
     }
   }[0]
   `

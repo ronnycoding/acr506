@@ -69,7 +69,6 @@ class Header extends Component {
 
   render() {
     const { title = "Missing title", navItems, router, logo } = this.props;
-    console.log(navItems);
     const { showNav } = this.state;
 
     return (
