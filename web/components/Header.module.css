@@ -113,6 +113,12 @@
         background-color: var(--color-white, #fff);
       }
     }
+
+    @media (--media-min-medium) {
+      @nest &[data-is-active="true"] {
+        border-bottom: 1px solid var(--color-white, #fff);
+      }
+    }
   }
 
   @nest .root[data-show-nav="true"] & > a[data-is-active="true"]::before {
