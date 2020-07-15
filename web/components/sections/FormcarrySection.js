@@ -14,7 +14,9 @@ const schema = yup.object().shape({
     .email("Su Correo Electrónico debe ser valido.")
     .required("Su Correo Electrónico es requerido."),
   phoneNumber: yup.string().required("Su Número de Teléfono es requerido."),
-  contactMethod: yup.boolean().oneOf([true], "Al menos un método de contacto es requerido."),
+  contactMethod: yup
+    .string()
+    .oneOf(["email", "phoneNumber", "WhatsApp"], "Al menos un método de contacto es requerido."),
   service: yup
     .array()
     .of(
@@ -32,17 +34,13 @@ const schema = yup.object().shape({
         derecho_laboral: yup.string().default("Otros"),
       })
     )
-    .required("Seleccione su tipo de caso.")
+    // .required("Seleccione su tipo de caso.")
     .nullable(),
   message: yup.string(),
 });
 
 const FormcarrySection = ({ formcarryFormId = "", label = "", heading = "" }) => {
-  const [contactMethod, setContactMethod] = useState({
-    email: false,
-    phoneNumber: false,
-    whatsaap: false,
-  });
+  const [contactMethod, setContactMethod] = useState("email");
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(schema),
   });
@@ -72,7 +70,7 @@ const FormcarrySection = ({ formcarryFormId = "", label = "", heading = "" }) =>
 
   return (
     <div className={styles.formContainer}>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.form} onSubmit={handleSubmit(submit)}>
         <p className={styles.formParagraph}>Customer information</p>
         <div className={styles.formContainerEmail}>
           <label className={styles.formLabelEmail} htmlFor="fullname">
@@ -134,14 +132,8 @@ const FormcarrySection = ({ formcarryFormId = "", label = "", heading = "" }) =>
               value="email"
               ref={register}
               className={styles.grayCheckBoxInput}
-              onClick={() =>
-                setContactMethod({
-                  email: true,
-                  phoneNumber: false,
-                  whatsaap: false,
-                })
-              }
-              checked={contactMethod.email}
+              onChange={() => setContactMethod("email")}
+              defaultChecked={contactMethod === "email"}
             />
             <span className={styles.grayCheckBoxSpan}>Correo Electrónico</span>
           </label>
@@ -152,14 +144,8 @@ const FormcarrySection = ({ formcarryFormId = "", label = "", heading = "" }) =>
               value="phoneNumber"
               ref={register}
               className={styles.grayCheckBoxInput}
-              onClick={() =>
-                setContactMethod({
-                  email: false,
-                  phoneNumber: true,
-                  whatsaap: false,
-                })
-              }
-              checked={contactMethod.phoneNumber}
+              onChange={() => setContactMethod("phoneNumber")}
+              defaultChecked={contactMethod === "phoneNumber"}
             />
             <span className={styles.grayCheckBoxSpan}>Número Teléfonico</span>
           </label>
@@ -170,21 +156,13 @@ const FormcarrySection = ({ formcarryFormId = "", label = "", heading = "" }) =>
               value="WhatsApp"
               ref={register}
               className={styles.grayCheckBoxInput}
-              onClick={() =>
-                setContactMethod({
-                  email: false,
-                  phoneNumber: false,
-                  whatsaap: true,
-                })
-              }
-              checked={contactMethod.whatsaap}
+              onChange={() => setContactMethod("WhatsApp")}
+              defaultChecked={contactMethod === "WhatsApp"}
             />
             <span className={styles.grayCheckBoxSpan}>WhatsApp</span>
           </label>
           {errors.contactMethod && (
-            <span className={styles.formRequiredField}>
-              Como prefiere ser contactado es requerido.
-            </span>
+            <span className={styles.formRequiredField}>{errors.contactMethod.message}</span>
           )}
         </div>
         <div className={styles.dropdownContainer}>
