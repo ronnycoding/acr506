@@ -101,7 +101,7 @@ class Header extends Component {
                         pathname: "/LandingPage",
                         query: { slug: slug.current },
                       }}
-                      as={`${slug.current}`}
+                      as={`${slug.current !== "/" ? "/" + slug.current : "/"}`}
                       prefetch
                     >
                       <a data-is-active={isActive ? "true" : "false"}>{title}</a>
