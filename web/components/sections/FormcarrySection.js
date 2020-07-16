@@ -128,7 +128,7 @@ const FormcarrySection = ({ formcarryFormId = "", label = "", heading = "" }) =>
               name="email"
               type="email"
               ref={register}
-              placeholder="Escriba su correo electrónico."
+              placeholder="ejemplo@micorreo.com"
               aria-label="Correo Electrónico"
             />
             {errors.email && (
@@ -143,10 +143,10 @@ const FormcarrySection = ({ formcarryFormId = "", label = "", heading = "" }) =>
               className={styles.sectionMediaRightInput}
               id="phoneNumber"
               name="phoneNumber"
-              pattern="[0-9]{4}-[0-9]{4}"
+              pattern="[0-9]{8}"
               type="tel"
               ref={register}
-              placeholder="Escriba su número de teléfono."
+              placeholder="88888888"
               aria-label="Número Teléfonico"
             />
             {errors.phoneNumber && (
