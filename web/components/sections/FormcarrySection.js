@@ -101,153 +101,168 @@ const FormcarrySection = ({ formcarryFormId = "", label = "", heading = "" }) =>
   }
 
   return (
-    <div className={styles.formContainer}>
-      <form className={styles.form} onSubmit={handleSubmit(handleFormSubmission)}>
-        <p className={styles.formParagraph}>Customer information</p>
-        <div className={styles.formContainerEmail}>
-          <label className={styles.formLabelEmail} htmlFor="fullname">
-            Nombre Completo
-          </label>
-          <input
-            className={styles.formInputEmail}
-            id="fullname"
-            name="fullname"
-            type="text"
-            ref={register}
-            placeholder="Escriba su nombre completo."
-            aria-label="Nombre completo"
-          />
-          {errors.fullname && (
-            <span className={styles.formRequiredField}>{errors.fullname.message}</span>
-          )}
-        </div>
-        <div className={styles.sectionMediaLeft}>
-          <label className={styles.sectionMediaLeftLabel} htmlFor="email">
-            Correo Electrónico
-          </label>
-          <input
-            className={styles.sectionMediaLeftInput}
-            id="email"
-            name="email"
-            type="text"
-            ref={register}
-            placeholder="Escriba su correo electrónico."
-            aria-label="Correo Electrónico"
-          />
-          {errors.email && <span className={styles.formRequiredField}>{errors.email.message}</span>}
-        </div>
-        <div className={styles.sectionMediaRight}>
-          <label className={styles.sectionMediaRightLabel} htmlFor="phoneNumber">
-            Número Teléfonico
-          </label>
-          <input
-            className={styles.sectionMediaRightInput}
-            id="phoneNumber"
-            name="phoneNumber"
-            type="text"
-            ref={register}
-            placeholder="Escriba su número de teléfono."
-            aria-label="Número Teléfonico"
-          />
-          {errors.phoneNumber && (
-            <span className={styles.formRequiredField}>{errors.phoneNumber.message}</span>
-          )}
-        </div>
-        <div className={styles.formContainerEmail}>
-          <label className={styles.formLabelEmail} htmlFor="phoneNumber">
-            ¿Como prefiere ser contactado?
-          </label>
-          <label className={styles.grayCheckBoxLabel}>
-            <div className={styles.grayCheckBoxContainer}>
-              <input
-                type="checkbox"
-                name="contactMethod"
-                value="email"
-                ref={register}
-                className={styles.grayCheckBoxInput}
-                onChange={(e) => setContactMethod("email")}
-                checked={contactMethod === "email" ? true : null}
+    <div className={styles.root}>
+      <div className={styles.formContainer}>
+        <form className={styles.form} onSubmit={handleSubmit(handleFormSubmission)}>
+          <p className={styles.formParagraph}>{label}</p>
+          <div className={styles.formContainerEmail}>
+            <label className={styles.formLabelEmail} htmlFor="fullname">
+              Nombre Completo
+            </label>
+            <input
+              className={styles.formInputEmail}
+              id="fullname"
+              name="fullname"
+              type="text"
+              ref={register}
+              placeholder="Escriba su nombre completo."
+              aria-label="Nombre completo"
+            />
+            {errors.fullname && (
+              <span className={styles.formRequiredField}>{errors.fullname.message}</span>
+            )}
+          </div>
+          <div className={styles.sectionMediaLeft}>
+            <label className={styles.sectionMediaLeftLabel} htmlFor="email">
+              Correo Electrónico
+            </label>
+            <input
+              className={styles.sectionMediaLeftInput}
+              id="email"
+              name="email"
+              type="text"
+              ref={register}
+              placeholder="Escriba su correo electrónico."
+              aria-label="Correo Electrónico"
+            />
+            {errors.email && (
+              <span className={styles.formRequiredField}>{errors.email.message}</span>
+            )}
+          </div>
+          <div className={styles.sectionMediaRight}>
+            <label className={styles.sectionMediaRightLabel} htmlFor="phoneNumber">
+              Número Teléfonico
+            </label>
+            <input
+              className={styles.sectionMediaRightInput}
+              id="phoneNumber"
+              name="phoneNumber"
+              type="text"
+              ref={register}
+              placeholder="Escriba su número de teléfono."
+              aria-label="Número Teléfonico"
+            />
+            {errors.phoneNumber && (
+              <span className={styles.formRequiredField}>{errors.phoneNumber.message}</span>
+            )}
+          </div>
+          <div className={styles.formContainerEmail}>
+            <label className={styles.formLabelEmail} htmlFor="phoneNumber">
+              ¿Como prefiere ser contactado?
+            </label>
+            <label className={styles.grayCheckBoxLabel}>
+              <div className={styles.grayCheckBoxContainer}>
+                <input
+                  type="checkbox"
+                  name="contactMethod"
+                  value="email"
+                  ref={register}
+                  className={styles.grayCheckBoxInput}
+                  onChange={(e) => setContactMethod("email")}
+                  checked={contactMethod === "email" ? true : null}
+                />
+                <svg className={styles.grayCheckBoxSvg} viewBox="0 0 20 20">
+                  <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+                </svg>
+              </div>
+              <div className={styles.grayCheckBoxSpan}>Correo Electrónico</div>
+            </label>
+            <label className={styles.grayCheckBoxLabel}>
+              <div className={styles.grayCheckBoxContainer}>
+                <input
+                  type="checkbox"
+                  name="contactMethod"
+                  value="phoneNumber"
+                  ref={register}
+                  className={styles.grayCheckBoxInput}
+                  onChange={(e) => setContactMethod("phoneNumber")}
+                  checked={contactMethod === "phoneNumber" ? true : null}
+                />
+                <svg className={styles.grayCheckBoxSvg} viewBox="0 0 20 20">
+                  <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+                </svg>
+              </div>
+              <span className={styles.grayCheckBoxSpan}>Número Teléfonico</span>
+            </label>
+            <label className={styles.grayCheckBoxLabel}>
+              <div className={styles.grayCheckBoxContainer}>
+                <input
+                  type="checkbox"
+                  name="contactMethod"
+                  value="whatsApp"
+                  ref={register}
+                  className={styles.grayCheckBoxInput}
+                  onChange={(e) => setContactMethod("WhatsApp")}
+                  checked={contactMethod === "WhatsApp" ? true : null}
+                />
+                <svg className={styles.grayCheckBoxSvg} viewBox="0 0 20 20">
+                  <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+                </svg>
+              </div>
+              <span className={styles.grayCheckBoxSpan}>WhatsApp</span>
+            </label>
+            {errors.contactMethod && (
+              <span className={styles.formRequiredField}>{errors.contactMethod.message}</span>
+            )}
+          </div>
+          <div className={styles.dropdownContainer}>
+            <svg
+              className={styles.dropdownSvg}
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 412 232"
+            >
+              <path
+                d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z"
+                fill="#648299"
+                fillRule="nonzero"
               />
-              <svg className={styles.grayCheckBoxSvg} viewBox="0 0 20 20">
-                <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
-              </svg>
-            </div>
-            <div className={styles.grayCheckBoxSpan}>Correo Electrónico</div>
-          </label>
-          <label className={styles.grayCheckBoxLabel}>
-            <div className={styles.grayCheckBoxContainer}>
-              <input
-                type="checkbox"
-                name="contactMethod"
-                value="phoneNumber"
-                ref={register}
-                className={styles.grayCheckBoxInput}
-                onChange={(e) => setContactMethod("phoneNumber")}
-                checked={contactMethod === "phoneNumber" ? true : null}
-              />
-              <svg className={styles.grayCheckBoxSvg} viewBox="0 0 20 20">
-                <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
-              </svg>
-            </div>
-            <span className={styles.grayCheckBoxSpan}>Número Teléfonico</span>
-          </label>
-          <label className={styles.grayCheckBoxLabel}>
-            <div className={styles.grayCheckBoxContainer}>
-              <input
-                type="checkbox"
-                name="contactMethod"
-                value="whatsApp"
-                ref={register}
-                className={styles.grayCheckBoxInput}
-                onChange={(e) => setContactMethod("WhatsApp")}
-                checked={contactMethod === "WhatsApp" ? true : null}
-              />
-              <svg className={styles.grayCheckBoxSvg} viewBox="0 0 20 20">
-                <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
-              </svg>
-            </div>
-            <span className={styles.grayCheckBoxSpan}>WhatsApp</span>
-          </label>
-          {errors.contactMethod && (
-            <span className={styles.formRequiredField}>{errors.contactMethod.message}</span>
-          )}
-        </div>
-        <div className={styles.dropdownContainer}>
-          <select name="service" className={styles.dropdownSelect} ref={register}>
-            <option value={null}>Tipo de Caso</option>
-            <option value="cobro_judicial">Derecho Cobro Judicial</option>
-            <option value="derecho_penal">Derecho Penal</option>
-            <option value="derecho_laboral">Derecho Laboral</option>
-            <option value="otro">Otros</option>
-          </select>
-        </div>
-        <div className={styles.formContainerEmail}>
-          {errors.service && (
-            <span className={styles.formRequiredField}>{errors.service.message}</span>
-          )}
-        </div>
-        <div className={styles.formContainerEmail}>
-          <label className={styles.sectionMediaRightLabel} htmlFor="message">
-            ¿Quiere agregar información adicional?
-          </label>
-          <textarea
-            id="message"
-            className={styles.formInputTextArea}
-            name="message"
-            placeholder="Mensaje"
-            ref={register}
-          />
-        </div>
-        <div className={styles.formContainerEmail}>
-          <button
-            className={styles.submitButton}
-            type="submit"
-            disabled={Boolean(Object.keys(errors).length)}
-          >
-            Enviar
-          </button>
-        </div>
-      </form>
+            </svg>
+            <select name="service" className={styles.dropdownSelect} ref={register}>
+              <option value={null}>Tipo de Caso</option>
+              <option value="cobro_judicial">Derecho Cobro Judicial</option>
+              <option value="derecho_penal">Derecho Penal</option>
+              <option value="derecho_laboral">Derecho Laboral</option>
+              <option value="otro">Otros</option>
+            </select>
+          </div>
+          <div className={styles.formContainerEmail}>
+            {errors.service && (
+              <span className={styles.formRequiredField}>{errors.service.message}</span>
+            )}
+          </div>
+          <div className={styles.formContainerEmail}>
+            <label className={styles.sectionMediaRightLabel} htmlFor="message">
+              ¿Quiere agregar información adicional?
+            </label>
+            <textarea
+              id="message"
+              className={styles.formInputTextArea}
+              name="message"
+              placeholder="Mensaje"
+              ref={register}
+            />
+          </div>
+          <div className={styles.formContainerEmail}>
+            <button
+              className={styles.submitButton}
+              type="submit"
+              disabled={Boolean(Object.keys(errors).length)}
+            >
+              Enviar
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

@@ -5,8 +5,21 @@
 @tailwind components;
 @tailwind utilities;
 
+.root {
+  padding: 2rem 0;
+
+  @media (--media-min-medium) {
+    padding: 4rem 0;
+  }
+}
+
 .formContainer {
   @apply leading-loose;
+  width: 100%;
+  max-width: var(--width-small);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
 }
 
 .form {
@@ -80,7 +93,7 @@
 }
 
 .dropdownContainer {
-  @apply relative inline-flex;
+  @apply relative inline-flex mt-3;
 }
 
 .dropdownSvg {
@@ -101,4 +114,8 @@
 
 .messageSentSuccessSvg {
   @apply fill-current w-4 h-4 mr-2;
+}
+
+.section {
+  /* @apply fake-container; */
 }
