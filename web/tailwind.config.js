@@ -24,6 +24,8 @@ module.exports = {
 
       black: "#000",
       white: "#fff",
+      acr: "#32373e",
+      acrGold: "#A08F61",
 
       gray: {
         100: "#f7fafc",
@@ -731,5 +733,5 @@ module.exports = {
     transitionDelay: ["responsive"],
   },
   corePlugins: {},
-  plugins: [require("@tailwindcss/custom-forms")],
+  plugins: [require("@tailwindcss/custom-forms"), require("@tailwindcss/typography")],
 };

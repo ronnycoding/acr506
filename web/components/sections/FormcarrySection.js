@@ -6,23 +6,16 @@ import { yupResolver } from "@hookform/resolvers";
 import * as yup from "yup";
 
 import styles from "./FormcarrySection.module.css";
+import SimpleBlockContent from "../SimpleBlockContent";
 
 const schema = yup.object().shape({
-  fullname: yup.string().required("Su Nombre Completo es requerido."),
-  email: yup
-    .string()
-    .email("Su Correo Electrónico debe ser valido.")
-    .required("Su Correo Electrónico es requerido."),
-  phoneNumber: yup.string().required("Su Número de Teléfono es requerido."),
-  contactMethod: yup
-    .string()
-    .oneOf(["email", "phoneNumber", "whatsApp"], "Al menos un método de contacto es requerido."),
+  fullname: yup.string().required("*Requerido."),
+  email: yup.string().email("*Invalido.").required("*Requerido."),
+  phoneNumber: yup.string().required("*Requerido."),
+  contactMethod: yup.string().oneOf(["email", "phoneNumber", "whatsApp"], "*Requerido."),
   service: yup
     .string()
-    .oneOf(
-      ["cobro_judicial", "derecho_penal", "derecho_laboral", "otro"],
-      "Seleccione su tipo de caso."
-    ),
+    .oneOf(["cobro_judicial", "derecho_penal", "derecho_laboral", "otro"], "*Requerido."),
   message: yup.string(),
 });
 
@@ -104,7 +97,10 @@ const FormcarrySection = ({ formcarryFormId = "", label = "", heading = "" }) =>
     <div className={styles.root}>
       <div className={styles.formContainer}>
         <form className={styles.form} onSubmit={handleSubmit(handleFormSubmission)}>
-          <p className={styles.formParagraph}>{label}</p>
+          <div className={styles.formHeadingContainer}>
+            <h2 className={styles.formParagraph}>{label}</h2>
+            {heading && <SimpleBlockContent blocks={heading} />}
+          </div>
           <div className={styles.formContainerEmail}>
             <label className={styles.formLabelEmail} htmlFor="fullname">
               Nombre Completo
@@ -130,7 +126,7 @@ const FormcarrySection = ({ formcarryFormId = "", label = "", heading = "" }) =>
               className={styles.sectionMediaLeftInput}
               id="email"
               name="email"
-              type="text"
+              type="email"
               ref={register}
               placeholder="Escriba su correo electrónico."
               aria-label="Correo Electrónico"
@@ -147,7 +143,8 @@ const FormcarrySection = ({ formcarryFormId = "", label = "", heading = "" }) =>
               className={styles.sectionMediaRightInput}
               id="phoneNumber"
               name="phoneNumber"
-              type="text"
+              pattern="[0-9]{4}-[0-9]{4}"
+              type="tel"
               ref={register}
               placeholder="Escriba su número de teléfono."
               aria-label="Número Teléfonico"
@@ -258,7 +255,7 @@ const FormcarrySection = ({ formcarryFormId = "", label = "", heading = "" }) =>
               type="submit"
               disabled={Boolean(Object.keys(errors).length)}
             >
-              Enviar
+              Consultar
             </button>
           </div>
         </form>
