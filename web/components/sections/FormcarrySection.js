@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
-import { useForm as useFormcarry } from "@formcarry/react";
+import axios from "axios";
 import { yupResolver } from "@hookform/resolvers";
 import * as yup from "yup";
 
@@ -16,44 +16,76 @@ const schema = yup.object().shape({
   phoneNumber: yup.string().required("Su Número de Teléfono es requerido."),
   contactMethod: yup
     .string()
-    .oneOf(["email", "phoneNumber", "WhatsApp"], "Al menos un método de contacto es requerido."),
+    .oneOf(["email", "phoneNumber", "whatsApp"], "Al menos un método de contacto es requerido."),
   service: yup
-    .array()
-    .of(
-      false,
-      yup.object({
-        cobro_judicial: yup.string().default("Cobro Judicial"),
-      }),
-      yup.object({
-        derecho_penal: yup.string().default("Derecho penal"),
-      }),
-      yup.object({
-        derecho_laboral: yup.string().default("Derecho laboral"),
-      }),
-      yup.object({
-        derecho_laboral: yup.string().default("Otros"),
-      })
-    )
-    // .required("Seleccione su tipo de caso.")
-    .nullable(),
+    .string()
+    .oneOf(
+      ["cobro_judicial", "derecho_penal", "derecho_laboral", "otro"],
+      "Seleccione su tipo de caso."
+    ),
   message: yup.string(),
 });
 
 const FormcarrySection = ({ formcarryFormId = "", label = "", heading = "" }) => {
-  const [contactMethod, setContactMethod] = useState("email");
+  const [contactMethod, setContactMethod] = useState("");
+  const [successMessage, setSuccessMessage] = useState(false);
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const { state, submit } = useFormcarry({
-    id: formcarryFormId,
-  });
+  const handleFormSubmission = async ({
+    contactMethod,
+    message,
+    service,
+    phoneNumber,
+    email,
+    fullname,
+  }) => {
+    const contactMethods = {
+      email: "Correo Electrónico",
+      phoneNumber: "Número Teléfonico",
+      whatsApp: "WhatsApp",
+    };
 
-  const onSubmit = (data) => console.log(data);
+    const services = {
+      cobro_judicial: "Cobro Judicial",
+      derecho_laboral: "Derecho Laboral",
+      derecho_penal: "Derecho Penal",
+      otro: "Otros",
+    };
+    const { status } = await axios.post(
+      `https://formcarry.com/s/${formcarryFormId}`,
+      {
+        Nombre_Completo: fullname,
+        Número_teléfonico: phoneNumber,
+        Correo_Electrónico: email,
+        Método_de_Contácto: contactMethods[contactMethod],
+        Tipo_de_servicio_interesado: services[service],
+        Mensaje: message,
+      },
+      {
+        headers: { Accept: "application/json" },
+      }
+    );
 
-  console.log(watch("example")); // watch input value by passing the name of it
+    if (status === 200) {
+      setSuccessMessage(true);
+    }
+  };
 
-  if (state.submitted) {
+  useEffect(() => {
+    if (successMessage) {
+      const timeout = setTimeout(() => {
+        setSuccessMessage(false);
+        setContactMethod("");
+      }, 3000);
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+  }, [successMessage]);
+
+  if (successMessage) {
     return (
       <div className={styles.messageSentSuccessContainer} role="alert">
         <svg
@@ -70,7 +102,7 @@ const FormcarrySection = ({ formcarryFormId = "", label = "", heading = "" }) =>
 
   return (
     <div className={styles.formContainer}>
-      <form className={styles.form} onSubmit={handleSubmit(submit)}>
+      <form className={styles.form} onSubmit={handleSubmit(handleFormSubmission)}>
         <p className={styles.formParagraph}>Customer information</p>
         <div className={styles.formContainerEmail}>
           <label className={styles.formLabelEmail} htmlFor="fullname">
@@ -126,39 +158,54 @@ const FormcarrySection = ({ formcarryFormId = "", label = "", heading = "" }) =>
             ¿Como prefiere ser contactado?
           </label>
           <label className={styles.grayCheckBoxLabel}>
-            <input
-              type="checkbox"
-              name="contactMethod"
-              value="email"
-              ref={register}
-              className={styles.grayCheckBoxInput}
-              onChange={() => setContactMethod("email")}
-              defaultChecked={contactMethod === "email"}
-            />
-            <span className={styles.grayCheckBoxSpan}>Correo Electrónico</span>
+            <div className={styles.grayCheckBoxContainer}>
+              <input
+                type="checkbox"
+                name="contactMethod"
+                value="email"
+                ref={register}
+                className={styles.grayCheckBoxInput}
+                onChange={(e) => setContactMethod("email")}
+                checked={contactMethod === "email" ? true : null}
+              />
+              <svg className={styles.grayCheckBoxSvg} viewBox="0 0 20 20">
+                <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+              </svg>
+            </div>
+            <div className={styles.grayCheckBoxSpan}>Correo Electrónico</div>
           </label>
           <label className={styles.grayCheckBoxLabel}>
-            <input
-              type="checkbox"
-              name="contactMethod"
-              value="phoneNumber"
-              ref={register}
-              className={styles.grayCheckBoxInput}
-              onChange={() => setContactMethod("phoneNumber")}
-              defaultChecked={contactMethod === "phoneNumber"}
-            />
+            <div className={styles.grayCheckBoxContainer}>
+              <input
+                type="checkbox"
+                name="contactMethod"
+                value="phoneNumber"
+                ref={register}
+                className={styles.grayCheckBoxInput}
+                onChange={(e) => setContactMethod("phoneNumber")}
+                checked={contactMethod === "phoneNumber" ? true : null}
+              />
+              <svg className={styles.grayCheckBoxSvg} viewBox="0 0 20 20">
+                <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+              </svg>
+            </div>
             <span className={styles.grayCheckBoxSpan}>Número Teléfonico</span>
           </label>
           <label className={styles.grayCheckBoxLabel}>
-            <input
-              type="checkbox"
-              name="contactMethod"
-              value="WhatsApp"
-              ref={register}
-              className={styles.grayCheckBoxInput}
-              onChange={() => setContactMethod("WhatsApp")}
-              defaultChecked={contactMethod === "WhatsApp"}
-            />
+            <div className={styles.grayCheckBoxContainer}>
+              <input
+                type="checkbox"
+                name="contactMethod"
+                value="whatsApp"
+                ref={register}
+                className={styles.grayCheckBoxInput}
+                onChange={(e) => setContactMethod("WhatsApp")}
+                checked={contactMethod === "WhatsApp" ? true : null}
+              />
+              <svg className={styles.grayCheckBoxSvg} viewBox="0 0 20 20">
+                <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+              </svg>
+            </div>
             <span className={styles.grayCheckBoxSpan}>WhatsApp</span>
           </label>
           {errors.contactMethod && (
@@ -168,9 +215,9 @@ const FormcarrySection = ({ formcarryFormId = "", label = "", heading = "" }) =>
         <div className={styles.dropdownContainer}>
           <select name="service" className={styles.dropdownSelect} ref={register}>
             <option value={null}>Tipo de Caso</option>
-            <option value="cobro_judicial">Derecho cobro judicial</option>
-            <option value="derecho_penal">Derecho penal</option>
-            <option value="derecho_laboral">Derecho laboral</option>
+            <option value="cobro_judicial">Derecho Cobro Judicial</option>
+            <option value="derecho_penal">Derecho Penal</option>
+            <option value="derecho_laboral">Derecho Laboral</option>
             <option value="otro">Otros</option>
           </select>
         </div>

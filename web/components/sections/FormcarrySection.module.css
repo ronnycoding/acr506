@@ -60,15 +60,23 @@
 }
 
 .grayCheckBoxLabel {
-  @apply inline-flex items-center mt-3;
+  @apply flex justify-start items-start mt-3;
+}
+
+.grayCheckBoxContainer {
+  @apply bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2;
 }
 
 .grayCheckBoxInput {
-  @apply form-checkbox h-5 w-5 text-gray-600;
+  @apply opacity-0 absolute;
+}
+
+.grayCheckBoxSvg {
+  @apply fill-current hidden w-4 h-4 text-green-500 pointer-events-none;
 }
 
 .grayCheckBoxSpan {
-  @apply ml-2 text-gray-700;
+  @apply select-none text-gray-700 text-sm;
 }
 
 .dropdownContainer {

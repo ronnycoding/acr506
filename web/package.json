@@ -11,13 +11,13 @@
     "start": "next start"
   },
   "dependencies": {
-    "@formcarry/react": "^1.0.2",
     "@hookform/resolvers": "0.0.6",
     "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/client": "^1.149.16",
     "@sanity/image-url": "^0.140.19",
     "@tailwindcss/custom-forms": "^0.2.1",
     "@zeit/next-css": "^1.0.1",
+    "axios": "^0.19.2",
     "groq": "^0.140.0",
     "lodash": "^4.17.11",
     "next": "^8.1.0",

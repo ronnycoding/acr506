@@ -23,3 +23,7 @@ body,
 :global(.content) {
   min-height: calc(100% - 84px - 218px);
 }
+
+input:checked + svg {
+  display: block;
+}
