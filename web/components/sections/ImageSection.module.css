@@ -57,6 +57,9 @@
   width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 
   @media (--media-min-medium) {
     max-width: calc(var(--width-small) - 3rem);
