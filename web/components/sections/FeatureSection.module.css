@@ -1,9 +1,9 @@
+@import "../../styles/custom-media.css";
+@import "../../styles/custom-properties.css";
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import "tailwindcss/screens";
-@import "../../styles/custom-media.css";
-@import "../../styles/custom-properties.css";
 
 .root {
   position: relative;

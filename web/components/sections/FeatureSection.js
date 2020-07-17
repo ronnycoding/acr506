@@ -8,7 +8,6 @@ import styles from "./FeatureSection.module.css";
 const builder = imageUrlBuilder(client);
 
 const FeatureSection = ({ feas = [] }) => {
-  console.log({ feas });
   return (
     <div className={styles.root}>
       <div className={styles.inner}>
