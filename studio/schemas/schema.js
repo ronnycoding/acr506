@@ -17,6 +17,7 @@ import internalLink from './objects/internalLink'
 import link from './objects/link'
 import portableText from './objects/portableText'
 import simplePortableText from './objects/simplePortableText'
+import feature from './objects/feature'
 
 // Landing page sections
 import hero from './objects/hero'
@@ -24,6 +25,7 @@ import imageSection from './objects/imageSection'
 import mailchimp from './objects/mailchimp'
 import textSection from './objects/textSection'
 import formcarrySection from './objects/formcarrySection'
+import featureSection from './objects/featureSection'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -45,6 +47,8 @@ export default createSchema({
     simplePortableText,
     siteConfig,
     textSection,
-    formcarrySection
+    formcarrySection,
+    feature,
+    featureSection
   ])
 })

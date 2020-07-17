@@ -17,6 +17,14 @@ export default {
       name: 'formcarryFormId',
       type: 'string',
       title: 'Form ID'
+    },
+    {
+      name: 'backgroundImage',
+      type: 'image',
+      title: 'Background Image',
+      options: {
+        hotspot: true
+      }
     }
   ],
   preview: {

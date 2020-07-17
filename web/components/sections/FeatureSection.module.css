@@ -1,0 +1,44 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "tailwindcss/screens";
+@import "../../styles/custom-media.css";
+@import "../../styles/custom-properties.css";
+
+.root {
+  position: relative;
+  padding: 0;
+  background-color: var(--color-gray-acr);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inner {
+  @apply grid grid-cols-1;
+  @screen lg {
+    @apply grid-cols-4;
+  }
+}
+
+.cardContainer {
+  height: 305px;
+  @apply max-w-sm overflow-hidden bg-acr;
+}
+
+.cardImage {
+  margin-left: 24px;
+  margin-top: 16px;
+}
+
+.cardContainerInner {
+  @apply px-6 py-4;
+}
+
+.cardTitle {
+  @apply font-bold text-xl mb-2 text-white;
+}
+
+.cardDescription {
+  @apply text-white text-base;
+}

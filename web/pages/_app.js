@@ -4,6 +4,7 @@ import client from "../client";
 // import 'normalize.css'
 import "../styles/shared.module.css";
 import "../styles/layout.css";
+import "../styles/tailwind.css";
 
 const siteConfigQuery = `
   *[_id == "global-config"] {

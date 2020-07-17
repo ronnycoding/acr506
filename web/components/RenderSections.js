@@ -30,7 +30,6 @@ function RenderSections(props) {
         if (!SectionComponent) {
           return <div>Missing section {section._type}</div>;
         }
-        console.log({ section });
         return <SectionComponent {...section} key={section._key} />;
       })}
     </Fragment>

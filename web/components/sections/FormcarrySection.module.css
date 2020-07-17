@@ -1,11 +1,9 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "tailwindcss/screens";
 @import "../../styles/custom-media.css";
 @import "../../styles/custom-properties.css";
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@tailwind custom-forms;
-@tailwind typography;
 
 .root {
   padding: 2rem 0;
@@ -25,7 +23,7 @@
 }
 
 .form {
-  @apply max-w-xl m-4 p-10 border-2 border-solid border-white shadow-xl;
+  @apply max-w-xl m-4 p-10 border-2 border-solid border-white shadow-xl bg-acr;
 }
 
 .formParagraph {
@@ -53,7 +51,10 @@
 }
 
 .sectionMediaLeft {
-  @apply inline-block mt-3 w-1/2 pr-1;
+  @apply inline-block mt-3 w-full  pr-1;
+  @media lg {
+    @apply w-1/2;
+  }
 }
 
 .sectionMediaLeftLabel,
@@ -67,7 +68,10 @@
 }
 
 .sectionMediaRight {
-  @apply inline-block mt-3 -mx-1 pl-1 w-1/2;
+  @apply inline-block mt-3 -mx-1 pl-1 w-full;
+  @media lg {
+    @apply w-1/2;
+  }
 }
 
 .submitButton {

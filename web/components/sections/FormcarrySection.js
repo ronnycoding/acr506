@@ -4,9 +4,16 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { yupResolver } from "@hookform/resolvers";
 import * as yup from "yup";
+import client from "../../client";
+import imageUrlBuilder from "@sanity/image-url";
 
 import styles from "./FormcarrySection.module.css";
 import SimpleBlockContent from "../SimpleBlockContent";
+import { propTypes } from "@sanity/block-content-to-react";
+
+function urlFor(source) {
+  return imageUrlBuilder(client).image(source);
+}
 
 const schema = yup.object().shape({
   fullname: yup.string().required("*Requerido."),
@@ -19,7 +26,12 @@ const schema = yup.object().shape({
   message: yup.string(),
 });
 
-const FormcarrySection = ({ formcarryFormId = "", label = "", heading = "" }) => {
+const FormcarrySection = ({
+  formcarryFormId = "",
+  label = "",
+  heading = "",
+  backgroundImage = false,
+}) => {
   const [contactMethod, setContactMethod] = useState("");
   const [successMessage, setSuccessMessage] = useState(false);
   const { register, handleSubmit, watch, errors } = useForm({
@@ -78,6 +90,12 @@ const FormcarrySection = ({ formcarryFormId = "", label = "", heading = "" }) =>
     }
   }, [successMessage]);
 
+  const style = backgroundImage
+    ? {
+        backgroundImage: `url("${urlFor(backgroundImage).width(2000).auto("format").url()}")`,
+      }
+    : {};
+
   if (successMessage) {
     return (
       <div className={styles.messageSentSuccessContainer} role="alert">
@@ -94,7 +112,7 @@ const FormcarrySection = ({ formcarryFormId = "", label = "", heading = "" }) =>
   }
 
   return (
-    <div className={styles.root}>
+    <div className={styles.root} style={style}>
       <div className={styles.formContainer}>
         <form className={styles.form} onSubmit={handleSubmit(handleFormSubmission)}>
           <div className={styles.formHeadingContainer}>
@@ -268,6 +286,7 @@ FormcarrySection.propTypes = {
   formcarryFormId: PropTypes.string,
   label: PropTypes.string,
   heading: PropTypes.arrayOf(PropTypes.object),
+  backgroundImage: PropTypes.object,
 };
 
 export default FormcarrySection;

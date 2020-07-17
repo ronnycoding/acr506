@@ -1,19 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.fake-container {
-  width: 100%;
-  @screen sm {
-    max-width: theme("screens.sm");
-  }
-  @screen md {
-    max-width: theme("screens.md");
-  }
-  @screen lg {
-    max-width: theme("screens.lg");
-  }
-  @screen xl {
-    max-width: theme("screens.xl");
-  }
-}
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "tailwindcss/screens";
