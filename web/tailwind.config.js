@@ -25,6 +25,7 @@ module.exports = {
       black: "#000",
       white: "#fff",
       acr: "#32373e",
+      acrDark: "#202223",
       acrGold: "#A08F61",
 
       gray: {

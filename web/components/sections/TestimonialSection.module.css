@@ -1,0 +1,153 @@
+@import "../../styles/custom-media.css";
+@import "../../styles/custom-properties.css";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "tailwindcss/screens";
+
+.root {
+  padding: 2rem 0;
+
+  @media (--media-min-medium) {
+    padding: 4rem 0;
+  }
+}
+
+.carouselContainer {
+  @apply m-10 mx-auto p-16 bg-acrDark;
+  @screen sm {
+    @apply p-24;
+  }
+  @screen lg {
+    @apply p-48;
+  }
+}
+
+.carouselBody {
+  min-height: 19rem;
+  @apply relative rounded-lg block items-center bg-gray-100 shadow-xl;
+  @screen md {
+    width: 100%;
+    @apply flex;
+  }
+}
+
+.carouselBodyInner {
+  min-height: 19rem;
+  @apply relative w-full h-full overflow-hidden rounded-t-lg;
+  @screen md {
+    @apply w-2/5 rounded-t-none rounded-l-lg;
+  }
+}
+
+.carouselBodyInnerContainer {
+  @apply w-full h-full flex;
+}
+
+.carouselImg {
+  @apply absolute inset-0 w-full h-full object-cover object-center;
+}
+
+.carouselPlaceHolderDiv {
+  @apply absolute inset-0 w-full h-full bg-acrGold opacity-75;
+}
+
+.carouselSvgContainer {
+  @apply absolute inset-0 w-full h-full flex items-center justify-center fill-current text-white;
+}
+
+.carouselSvg {
+  @apply w-full h-24;
+}
+
+.carouselCardContainer {
+  @apply w-full h-full flex items-center bg-gray-100 rounded-lg;
+  @screen md {
+    @apply w-3/5;
+  }
+}
+
+.carouselCardContainerInner {
+  @apply p-12;
+  @screen md {
+    @apply pr-24 pl-16 py-12;
+  }
+}
+
+.carouselCardText {
+  @apply text-gray-600;
+}
+
+.carouselCardTextBold {
+  @apply text-gray-900;
+}
+
+.carouselCardLink {
+  @apply flex items-baseline mt-3 text-indigo-600;
+}
+
+.carouselCardLink:hover {
+  @apply text-indigo-900;
+}
+
+.carouselCardLink:focus {
+  @apply text-indigo-900;
+}
+
+.carouselCardSpan {
+  @apply text-xs ml-1;
+}
+
+.carouselCardSvg {
+  @apply hidden absolute inset-y-0 h-full w-24 fill-current text-gray-100;
+  @screen md {
+    @apply block;
+  }
+}
+
+.carouselButtonLeft {
+  @apply absolute top-0 mt-32 left-0 bg-white rounded-full shadow-md h-12 w-12 text-2xl text-indigo-600 ml-6;
+}
+
+.carouselButtonLeft:focus {
+  @apply text-indigo-400 text-indigo-400 shadow-outline outline-none;
+}
+
+.carouselButtonLeftSpan {
+  transform: scale(-1);
+  @apply block;
+}
+
+.carouselButtonRight {
+  @apply absolute top-0 mt-32 right-0 bg-white rounded-full shadow-md h-12 w-12 text-2xl text-indigo-600 mr-6;
+}
+
+.carouselButtonRight:hover {
+  @apply text-indigo-400;
+}
+
+.carouselButtonRight:focus {
+  @apply text-indigo-400 outline-none shadow-outline;
+}
+
+.carouselButtonRightSpan {
+  transform: scale(1);
+  @apply block;
+}
+
+.carouselContainer {
+}
+
+.carouselItem {
+}
+
+.sliderClass {
+}
+
+.carouselContainerUl {
+  position: relative;
+}
+
+.containerClass {
+  position: relative;
+}

@@ -1,4 +1,6 @@
 module.exports = ({ file, options, env }) => ({
+  // syntax: "postcss-scss",
+  // parser: "postcss-scss",
   plugins: {
     tailwindcss: {},
     autoprefixer: {},

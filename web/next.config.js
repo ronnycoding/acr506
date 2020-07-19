@@ -1,4 +1,7 @@
 const withCSS = require("@zeit/next-css");
+const withSASS = require("@zeit/next-sass");
+const withFonts = require("next-fonts");
+const withPlugins = require("next-compose-plugins");
 const client = require("./client");
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -36,9 +39,11 @@ const reduceRoutes = (obj, route) => {
   return obj;
 };
 
-module.exports = withCSS({
+module.exports = withPlugins([withCSS, withSASS, withFonts], {
+  target: "serverless",
   cssModules: true,
   cssLoaderOptions: {
+    url: false,
     importLoaders: 1,
     localIdentName: isProduction ? "[hash:base64:5]" : "[name]__[local]___[hash:base64:5]",
   },

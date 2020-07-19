@@ -24,7 +24,8 @@ export default {
         { type: 'mailchimp' },
         { type: 'textSection' },
         { type: 'formcarrySection' },
-        { type: 'featureSection' }
+        { type: 'featureSection' },
+        { type: 'testimonialSection' }
       ]
     },
     {

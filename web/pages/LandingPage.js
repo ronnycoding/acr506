@@ -5,6 +5,7 @@ import groq from "groq";
 import imageUrlBuilder from "@sanity/image-url";
 import Layout from "../components/Layout";
 import client from "../client";
+import MobileDetect from "mobile-detect";
 import RenderSections from "../components/RenderSections";
 
 const builder = imageUrlBuilder(client);
@@ -39,14 +40,31 @@ class LandingPage extends Component {
     slug: PropTypes.any,
   };
 
-  static async getInitialProps({ query }) {
+  static async getInitialProps({ query, req, isServer }) {
     const { slug } = query;
+    let userAgent;
+    let deviceType;
+    if (req) {
+      userAgent = req.headers["user-agent"];
+    } else {
+      userAgent = navigator.userAgent;
+    }
+    const md = new MobileDetect(userAgent);
+    if (md.tablet()) {
+      deviceType = "tablet";
+    } else if (md.mobile()) {
+      deviceType = "mobile";
+    } else {
+      deviceType = "desktop";
+    }
+
     if (!query) {
       console.error("no query");
       return;
     }
+
     if (slug && slug !== "/") {
-      return client.fetch(pageQuery, { slug }).then((res) => ({ ...res.page, slug }));
+      return client.fetch(pageQuery, { slug }).then((res) => ({ ...res.page, slug, deviceType }));
     }
 
     // Frontpage
@@ -72,7 +90,7 @@ class LandingPage extends Component {
         }
       `
         )
-        .then((res) => ({ ...res.frontpage, slug }));
+        .then((res) => ({ ...res.frontpage, slug, deviceType }));
     }
 
     return null;
@@ -87,9 +105,10 @@ class LandingPage extends Component {
       content = [],
       config = {},
       slug,
+      deviceType,
     } = this.props;
 
-    // console.log(this.props);
+    console.log({ deviceType });
 
     const openGraphImages = openGraphImage
       ? [
@@ -130,7 +149,9 @@ class LandingPage extends Component {
             noindex: disallowRobots,
           }}
         />
-        {content && <RenderSections sections={content} />}
+        {content && (
+          <RenderSections sections={content.map((section) => ({ ...section, deviceType }))} />
+        )}
       </Layout>
     );
   }

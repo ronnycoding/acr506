@@ -1,9 +1,9 @@
+@import "../../styles/custom-media.css";
+@import "../../styles/custom-properties.css";
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import "tailwindcss/screens";
-@import "../../styles/custom-media.css";
-@import "../../styles/custom-properties.css";
 
 .root {
   padding: 2rem 0;
@@ -18,7 +18,7 @@
   width: 100%;
   max-width: var(--width-small);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 0.5rem;
   box-sizing: border-box;
 }
 
@@ -52,7 +52,7 @@
 
 .sectionMediaLeft {
   @apply inline-block mt-3 w-full  pr-1;
-  @media lg {
+  @screen lg {
     @apply w-1/2;
   }
 }
@@ -69,7 +69,7 @@
 
 .sectionMediaRight {
   @apply inline-block mt-3 -mx-1 pl-1 w-full;
-  @media lg {
+  @screen lg {
     @apply w-1/2;
   }
 }

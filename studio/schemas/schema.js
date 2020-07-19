@@ -26,6 +26,8 @@ import mailchimp from './objects/mailchimp'
 import textSection from './objects/textSection'
 import formcarrySection from './objects/formcarrySection'
 import featureSection from './objects/featureSection'
+import testimony from './objects/testimony'
+import testimonialSection from './objects/testimonialSection'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -49,6 +51,8 @@ export default createSchema({
     textSection,
     formcarrySection,
     feature,
-    featureSection
+    featureSection,
+    testimony,
+    testimonialSection
   ])
 })
