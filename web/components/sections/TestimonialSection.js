@@ -94,48 +94,6 @@ export default function TestimonialSection({ deviceType, testimonies }) {
             );
           })}
       </Carousel>
-      {/* <div className={styles.carouselContainer}>
-        <Carousel
-          responsive={responsive}
-          ssr
-          infinite={false}
-          draggable
-          arrows
-          customRightArrow={<CustomRightArrow />}
-          customLeftArrow={<CustomLeftArrow />}
-          containerClass={styles.containerClass}
-          // itemClass={styles.carouselBody}
-          itemClass={{ ...carouselStyles["react-multi-carousel-list"], ...styles.carouselBody }}
-          // sliderClass={}
-          sliderClass={carouselStyles["react-multi-carousel-track"]}
-          deviceType={deviceType}
-        >
-          {testimonies &&
-            testimonies.map(({ _key, testimonyImage }) => {
-              return (
-                <React.Fragment key={_key}>
-                  <div className={styles.carouselBodyInner}>
-                    <img className={styles.carouselImg} src={urlFor(testimonyImage)} alt="" />
-                  </div>
-                  <div className={styles.carouselCardContainer}>
-                    <div className={styles.carouselCardContainerInner}>
-                      <p className={styles.carouselCardText}>
-                        <span className={styles.carouselCardTextBold}>Missguided</span> is a
-                        UK-based fashion retailer that has nearly doubled in size since last year.
-                        They integrated Stripe to deliver seamless checkout across mobile and web
-                        for customers in 100+ countries, all while automatically combating fraud.
-                      </p>
-                      <a className={styles.carouselCardLink} href="">
-                        <span>Learn more about our users</span>
-                        <span className={styles.carouselCardSpan}>&#x279c;</span>
-                      </a>
-                    </div>
-                  </div>
-                </React.Fragment>
-              );
-            })}
-        </Carousel>
-      </div> */}
     </div>
   );
 }

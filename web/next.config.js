@@ -40,7 +40,6 @@ const reduceRoutes = (obj, route) => {
 };
 
 module.exports = withPlugins([withCSS, withSASS, withFonts], {
-  target: "serverless",
   cssModules: true,
   cssLoaderOptions: {
     url: false,
