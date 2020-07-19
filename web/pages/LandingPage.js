@@ -47,7 +47,7 @@ class LandingPage extends Component {
     if (req) {
       userAgent = req.headers ? req.headers["user-agent"] : {};
     } else {
-      userAgent = navigator.userAgent ? navigator.userAgent : {};
+      userAgent = navigator.userAgent && navigator.userAgent;
     }
     const md = new MobileDetect(userAgent);
     if (md.tablet()) {
