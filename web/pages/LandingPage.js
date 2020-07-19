@@ -45,9 +45,9 @@ class LandingPage extends Component {
     let userAgent;
     let deviceType;
     if (req) {
-      userAgent = req.headers["user-agent"];
+      userAgent = req.headers["user-agent"] || {};
     } else {
-      userAgent = navigator.userAgent;
+      userAgent = navigator.userAgent || {};
     }
     const md = new MobileDetect(userAgent);
     if (md.tablet()) {
