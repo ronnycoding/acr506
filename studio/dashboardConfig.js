@@ -1,12 +1,13 @@
 export default {
   widgets: [
+    { name: 'deploy-vercel' },
     {
       name: 'sanity-tutorials',
       options: {
         templateRepoId: 'sanity-io/sanity-template-nextjs-landing-pages'
       }
     },
-    {name: 'structure-menu'},
+    { name: 'structure-menu' },
     {
       name: 'project-info',
       options: {
@@ -39,15 +40,15 @@ export default {
             value: 'https://github.com/ronnyiscoding/acr506',
             category: 'Code'
           },
-          {title: 'Frontend', value: '', category: 'apps'}
+          { title: 'Frontend', value: '', category: 'apps' }
         ]
       }
     },
-    {name: 'project-users', layout: {height: 'auto'}},
+    { name: 'project-users', layout: { height: 'auto' } },
     {
       name: 'document-list',
-      options: {title: 'Recently edited', order: '_updatedAt desc', limit: 10, types: ['page']},
-      layout: {width: 'medium'}
+      options: { title: 'Recently edited', order: '_updatedAt desc', limit: 10, types: ['page'] },
+      layout: { width: 'medium' }
     }
   ]
 }

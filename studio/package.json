@@ -21,6 +21,7 @@
     "@sanity/desk-tool": "^1.149",
     "@sanity/vision": "^1.149.16",
     "bcp47": "^1.1.2",
+    "node-fetch": "^2.6.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
