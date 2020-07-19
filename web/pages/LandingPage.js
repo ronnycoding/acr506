@@ -45,7 +45,7 @@ class LandingPage extends Component {
     let userAgent;
     let deviceType;
     if (req) {
-      userAgent = req.headers && req.headers["user-agent"];
+      userAgent = req.headers ? req.headers["user-agent"] : {};
     } else {
       userAgent = navigator.userAgent ? navigator.userAgent : {};
     }

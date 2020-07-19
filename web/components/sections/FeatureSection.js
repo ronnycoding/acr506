@@ -4,15 +4,17 @@ import imageUrlBuilder from "@sanity/image-url";
 import client from "../../client";
 
 import styles from "./FeatureSection.module.css";
+import SimpleBlockContent from "../SimpleBlockContent";
 
 const builder = imageUrlBuilder(client);
 
 const FeatureSection = ({ feas = [] }) => {
+  console.log({ feas });
   return (
     <div className={styles.root}>
       <div className={styles.inner}>
         {feas &&
-          feas.map(({ _key, featureTitle, featureLogo }) => (
+          feas.map(({ _key, featureTitle, featureLogo, featureDescription }) => (
             <div key={_key} className={styles.cardContainer}>
               <img
                 className={styles.cardImage}
@@ -21,10 +23,9 @@ const FeatureSection = ({ feas = [] }) => {
               />
               <div className={styles.cardContainerInner}>
                 <div className={styles.cardTitle}>{featureTitle}</div>
-                <p className={styles.cardDescription}>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia,
-                  nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                </p>
+                <div className={styles.cardDescription}>
+                  {featureDescription && <SimpleBlockContent blocks={featureDescription} />}
+                </div>
               </div>
             </div>
           ))}

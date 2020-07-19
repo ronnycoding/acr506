@@ -7,6 +7,9 @@
 
 .root {
   padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   @media (--media-min-medium) {
     padding: 4rem 0;
@@ -25,7 +28,7 @@
 
 .carouselBody {
   min-height: 19rem;
-  @apply relative rounded-lg block items-center bg-gray-100 shadow-xl;
+  @apply relative block items-center bg-gray-100 shadow-xl;
   @screen md {
     width: 100%;
     @apply flex;
@@ -34,9 +37,9 @@
 
 .carouselBodyInner {
   min-height: 19rem;
-  @apply relative w-full h-full overflow-hidden rounded-t-lg;
+  @apply relative w-full h-full overflow-hidden;
   @screen md {
-    @apply w-2/5 rounded-t-none rounded-l-lg;
+    @apply w-2/5;
   }
 }
 
@@ -61,7 +64,7 @@
 }
 
 .carouselCardContainer {
-  @apply w-full h-full flex items-center bg-gray-100 rounded-lg;
+  @apply w-full h-full flex items-center bg-gray-100;
   @screen md {
     @apply w-3/5;
   }
@@ -69,6 +72,8 @@
 
 .carouselCardContainerInner {
   @apply p-12;
+  overflow: hidden;
+  overflow-wrap: break-word;
   @screen md {
     @apply pr-24 pl-16 py-12;
   }
@@ -83,7 +88,7 @@
 }
 
 .carouselCardLink {
-  @apply flex items-baseline mt-3 text-indigo-600;
+  @apply flex items-baseline mt-3 text-acrGold;
 }
 
 .carouselCardLink:hover {
@@ -106,11 +111,11 @@
 }
 
 .carouselButtonLeft {
-  @apply absolute top-0 mt-32 left-0 bg-white rounded-full shadow-md h-12 w-12 text-2xl text-indigo-600 ml-6;
+  @apply absolute top-0 mt-32 left-0 bg-white shadow-md h-12 w-12 text-2xl text-acrGold ml-6;
 }
 
 .carouselButtonLeft:focus {
-  @apply text-indigo-400 text-indigo-400 shadow-outline outline-none;
+  @apply text-acrGold text-acrGold shadow-outline outline-none;
 }
 
 .carouselButtonLeftSpan {
@@ -119,15 +124,15 @@
 }
 
 .carouselButtonRight {
-  @apply absolute top-0 mt-32 right-0 bg-white rounded-full shadow-md h-12 w-12 text-2xl text-indigo-600 mr-6;
+  @apply absolute top-0 mt-32 right-0 bg-white shadow-md h-12 w-12 text-2xl text-acrGold mr-6;
 }
 
 .carouselButtonRight:hover {
-  @apply text-indigo-400;
+  @apply text-acrGold;
 }
 
 .carouselButtonRight:focus {
-  @apply text-indigo-400 outline-none shadow-outline;
+  @apply text-acrGold outline-none shadow-outline;
 }
 
 .carouselButtonRightSpan {
@@ -150,4 +155,18 @@
 
 .containerClass {
   position: relative;
+}
+
+.containerInner {
+  width: 100%;
+  @screen sm {
+    max-width: theme("screens.sm");
+  }
+  @screen md {
+    max-width: theme("screens.md");
+  }
+}
+
+.testimonialTitle {
+  @apply font-semibold text-xl mb-2 text-white;
 }

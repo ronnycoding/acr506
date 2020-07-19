@@ -5,6 +5,7 @@ import Carousel from "react-multi-carousel";
 // import NoSSR from "react-no-ssr";
 import carouselStyles from "react-multi-carousel/lib/styles.css";
 
+import SimpleBlockContent from "../SimpleBlockContent";
 import client from "../../client";
 import styles from "./TestimonialSection.module.css";
 
@@ -54,46 +55,46 @@ const CustomLeftArrow = ({ onClick, ...rest }) => {
   );
 };
 
-export default function TestimonialSection({ deviceType, testimonies }) {
+export default function TestimonialSection({ deviceType, testimonies, tagline, heading }) {
+  console.log({ testimonies });
   return (
     <div className={styles.root}>
-      <Carousel
-        responsive={responsive}
-        ssr
-        infinite={false}
-        containerClass={styles.containerClass}
-        deviceType={deviceType}
-        customRightArrow={<CustomRightArrow />}
-        customLeftArrow={<CustomLeftArrow />}
-        className={carouselStyles["react-multi-carousel-list"]}
-        sliderClass={carouselStyles["react-multi-carousel-track"]}
-        itemClass={carouselStyles["react-multi-carousel-item"]}
-      >
-        {testimonies &&
-          testimonies.map(({ _key, testimonyImage }) => {
-            return (
-              <div key={_key} className={styles.carouselBody}>
-                <div className={styles.carouselBodyInner}>
-                  <img className={styles.carouselImg} src={urlFor(testimonyImage)} alt="" />
-                </div>
-                <div className={styles.carouselCardContainer}>
-                  <div className={styles.carouselCardContainerInner}>
-                    <p className={styles.carouselCardText}>
-                      <span className={styles.carouselCardTextBold}>Missguided</span> is a UK-based
-                      fashion retailer that has nearly doubled in size since last year. They
-                      integrated Stripe to deliver seamless checkout across mobile and web for
-                      customers in 100+ countries, all while automatically combating fraud.
-                    </p>
-                    <a className={styles.carouselCardLink} href="">
-                      <span>Learn more about our users</span>
-                      <span className={styles.carouselCardSpan}>&#x279c;</span>
-                    </a>
+      <div className={styles.containerInner}>
+        <div>
+          <h2 className={styles.testimonialTitle}>{heading}</h2>
+          {tagline && <SimpleBlockContent blocks={tagline} />}
+        </div>
+        <Carousel
+          responsive={responsive}
+          ssr
+          infinite={false}
+          containerClass={styles.containerClass}
+          deviceType={deviceType}
+          customRightArrow={<CustomRightArrow />}
+          customLeftArrow={<CustomLeftArrow />}
+          className={carouselStyles["react-multi-carousel-list"]}
+          sliderClass={carouselStyles["react-multi-carousel-track"]}
+          itemClass={carouselStyles["react-multi-carousel-item"]}
+        >
+          {testimonies &&
+            testimonies.map(({ _key, testimonyImage, testimonyQuote }) => {
+              return (
+                <div key={_key} className={styles.carouselBody}>
+                  <div className={styles.carouselBodyInner}>
+                    <img className={styles.carouselImg} src={urlFor(testimonyImage)} alt="" />
+                  </div>
+                  <div className={styles.carouselCardContainer}>
+                    <div className={styles.carouselCardContainerInner}>
+                      <div className={styles.carouselCardText}>
+                        {testimonyQuote && <SimpleBlockContent blocks={testimonyQuote} />}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-      </Carousel>
+              );
+            })}
+        </Carousel>
+      </div>
     </div>
   );
 }
