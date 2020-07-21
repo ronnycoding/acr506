@@ -4,6 +4,16 @@ module.exports = ({ file, options, env }) => ({
   plugins: {
     tailwindcss: {},
     autoprefixer: {},
+    ...{
+      ...(env === "production"
+        ? {
+            "@fullhuman/postcss-purgecss": {
+              content: ["./components/**/*.js", "./pages/**/*.js"],
+              defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
+            },
+          }
+        : {}),
+    },
     "postcss-import": {},
     cssnano: env === "production" ? {} : false,
     "postcss-preset-env": {

@@ -56,7 +56,6 @@ const CustomLeftArrow = ({ onClick, ...rest }) => {
 };
 
 export default function TestimonialSection({ deviceType, testimonies, tagline, heading }) {
-  console.log({ testimonies });
   return (
     <div className={styles.root}>
       <div className={styles.containerInner}>
@@ -67,7 +66,6 @@ export default function TestimonialSection({ deviceType, testimonies, tagline, h
         <Carousel
           responsive={responsive}
           ssr
-          infinite={false}
           containerClass={styles.containerClass}
           deviceType={deviceType}
           customRightArrow={<CustomRightArrow />}
@@ -75,6 +73,9 @@ export default function TestimonialSection({ deviceType, testimonies, tagline, h
           className={carouselStyles["react-multi-carousel-list"]}
           sliderClass={carouselStyles["react-multi-carousel-track"]}
           itemClass={carouselStyles["react-multi-carousel-item"]}
+          infinite={true}
+          autoPlay={deviceType !== "mobile" ? true : false}
+          autoPlaySpeed={3000}
         >
           {testimonies &&
             testimonies.map(({ _key, testimonyImage, testimonyQuote }) => {

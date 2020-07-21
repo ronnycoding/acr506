@@ -35,14 +35,16 @@ const SocialIcon = ({ network, networkLink }) => {
     case "email":
       return (
         <a href={`mailto:${networkLink}`} target="_blank" className={styles.socialLink_a}>
-          <AiOutlineMail size={"2em"} /> <span className={styles.socialLink_span}>{networkLink}</span>
+          <AiOutlineMail size={"2em"} />{" "}
+          <span className={styles.socialLink_span}>{networkLink}</span>
         </a>
       );
       break;
     case "phone":
       return (
         <a href={`callto:${networkLink}`} target="_blank" className={styles.socialLink_a}>
-          <AiOutlinePhone size={"2em"} /> <span className={styles.socialLink_span}>{networkLink}</span>
+          <AiOutlinePhone size={"2em"} />{" "}
+          <span className={styles.socialLink_span}>{networkLink}</span>
         </a>
       );
       break;
@@ -52,7 +54,6 @@ const SocialIcon = ({ network, networkLink }) => {
 };
 
 export default function SocialNetworkLinks({ socialNetworks = [] }) {
-  console.log({ socialNetworks });
   return (
     <div className={styles.root}>
       <ul className={styles.socialLink_ul}>
