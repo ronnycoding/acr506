@@ -1,0 +1,40 @@
+@import "../styles/custom-media.css";
+@import "../styles/custom-properties.css";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "tailwindcss/screens";
+
+.root {
+  @apply leading-loose;
+  width: 100%;
+  max-width: var(--width-small);
+  margin: 0 auto;
+  padding: 2rem 0.5rem;
+  box-sizing: border-box;
+}
+
+.socialLink_ul {
+  @apply flex;
+  justify-content: center;
+  @screen lg {
+    display: flex;
+    justify-content: initial;
+  }
+}
+
+.socialLink_Li {
+  @apply mr-6;
+}
+
+.socialLink_a {
+  @apply flex text-sm align-middle;
+}
+
+.socialLink_span {
+  @apply ml-2;
+  display: none;
+  @screen lg {
+    display: flex;
+  }
+}

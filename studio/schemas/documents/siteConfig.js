@@ -83,6 +83,21 @@ export default {
       ]
     },
     {
+      title: 'Social Network items',
+      name: 'socialNetworks',
+      type: 'array',
+      validation: Rule => [
+        Rule.max(5).warning('Are you sure you want more than 5 items?'),
+        Rule.unique().error('You have duplicate menu items')
+      ],
+      of: [
+        {
+          title: 'Social Net',
+          type: 'socialNetwork'
+        }
+      ]
+    },
+    {
       name: 'footerText',
       type: 'simplePortableText',
       fieldset: 'footer'

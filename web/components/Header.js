@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import Link from "next/link";
 import { withRouter } from "next/router";
 import SVG from "react-inlinesvg";
+import SocialNetworkLinks from "./SocialNetworkLinks";
+
 import styles from "./Header.module.css";
 import HamburgerIcon from "./icons/Hamburger";
 
@@ -68,53 +70,57 @@ class Header extends Component {
   };
 
   render() {
-    const { title = "Missing title", navItems, router, logo } = this.props;
+    const { title = "Missing title", navItems, router, logo, socialNetworks } = this.props;
+    console.log({ socialNetworks });
     const { showNav } = this.state;
 
     return (
-      <div className={styles.root} data-show-nav={showNav}>
-        <h1 className={styles.branding}>
-          <Link
-            href={{
-              pathname: "/LandingPage",
-              query: {
-                slug: "/",
-              },
-            }}
-            as="/"
-            prefetch
-          >
-            <a title={title}>{this.renderLogo(logo)}</a>
-          </Link>
-        </h1>
-        <nav className={styles.nav}>
-          <ul className={styles.navItems}>
-            {navItems &&
-              navItems.map((item) => {
-                const { slug, title, _id } = item;
-                const isActive =
-                  router.pathname === "/LandingPage" && router.query.slug === slug.current;
-                return (
-                  <li key={_id} className={styles.navItem}>
-                    <Link
-                      href={{
-                        pathname: "/LandingPage",
-                        query: { slug: slug.current },
-                      }}
-                      as={`${slug.current !== "/" ? "/" + slug.current : "/"}`}
-                      prefetch
-                    >
-                      <a data-is-active={isActive ? "true" : "false"}>{title}</a>
-                    </Link>
-                  </li>
-                );
-              })}
-          </ul>
-          <button className={styles.showNavButton} onClick={this.handleMenuToggle}>
-            <HamburgerIcon className={styles.hamburgerIcon} />
-          </button>
-        </nav>
-      </div>
+      <>
+        <SocialNetworkLinks socialNetworks={socialNetworks} />
+        <div className={styles.root} data-show-nav={showNav}>
+          <h1 className={styles.branding}>
+            <Link
+              href={{
+                pathname: "/LandingPage",
+                query: {
+                  slug: "/",
+                },
+              }}
+              as="/"
+              prefetch
+            >
+              <a title={title}>{this.renderLogo(logo)}</a>
+            </Link>
+          </h1>
+          <nav className={styles.nav}>
+            <ul className={styles.navItems}>
+              {navItems &&
+                navItems.map((item) => {
+                  const { slug, title, _id } = item;
+                  const isActive =
+                    router.pathname === "/LandingPage" && router.query.slug === slug.current;
+                  return (
+                    <li key={_id} className={styles.navItem}>
+                      <Link
+                        href={{
+                          pathname: "/LandingPage",
+                          query: { slug: slug.current },
+                        }}
+                        as={`${slug.current !== "/" ? "/" + slug.current : "/"}`}
+                        prefetch
+                      >
+                        <a data-is-active={isActive ? "true" : "false"}>{title}</a>
+                      </Link>
+                    </li>
+                  );
+                })}
+            </ul>
+            <button className={styles.showNavButton} onClick={this.handleMenuToggle}>
+              <HamburgerIcon className={styles.hamburgerIcon} />
+            </button>
+          </nav>
+        </div>
+      </>
     );
   }
 }

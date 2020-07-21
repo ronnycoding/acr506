@@ -18,6 +18,7 @@ import link from './objects/link'
 import portableText from './objects/portableText'
 import simplePortableText from './objects/simplePortableText'
 import feature from './objects/feature'
+import socialNetwork from './objects/socialNetwork'
 
 // Landing page sections
 import hero from './objects/hero'
@@ -51,6 +52,7 @@ export default createSchema({
     textSection,
     formcarrySection,
     feature,
+    socialNetwork,
     featureSection,
     testimony,
     testimonialSection
