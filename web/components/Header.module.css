@@ -98,7 +98,7 @@
     padding: 1.5rem 0.5rem;
 
     @media (--media-max-medium) {
-      padding: 1rem 1.5rem;
+      padding: 1rem 1.5rem 2rem 1.5rem;
       width: 100%;
       box-sizing: border-box;
       text-align: right;
