@@ -22,7 +22,7 @@
 }
 
 .cardContainer {
-  height: 305px;
+  min-height: 305px;
   @apply max-w-sm overflow-hidden bg-acr;
 }
 

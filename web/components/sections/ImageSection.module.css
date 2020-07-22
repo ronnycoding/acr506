@@ -76,3 +76,7 @@
     max-width: calc((var(--width-small) / 2) - 3rem);
   }
 }
+
+.ctaContainer {
+  margin-top: 1rem;
+}

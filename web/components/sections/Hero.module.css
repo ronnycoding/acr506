@@ -2,7 +2,7 @@
 @import '../../styles/custom-properties.css';
 
 .root {
-  composes: center from '../../styles/shared.module.css';
+  /* composes: center from '../../styles/shared.module.css'; */
   position: relative;
   background-color: var(--color-black, #000);
   color: var(--color-white, #fff);
@@ -28,11 +28,13 @@
 }
 
 .content {
+  @apply leading-loose;
   width: 100%;
   max-width: var(--width-small);
   padding: 0 1.5em;
   box-sizing: border-box;
   z-index: 1;
+  margin: 0 auto;
 }
 
 .title {

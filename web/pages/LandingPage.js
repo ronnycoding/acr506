@@ -108,7 +108,6 @@ class LandingPage extends Component {
       deviceType,
     } = this.props;
 
-    console.log({ deviceType });
 
     const openGraphImages = openGraphImage
       ? [
