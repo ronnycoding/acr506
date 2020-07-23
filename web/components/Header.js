@@ -74,7 +74,7 @@ class Header extends Component {
     const { showNav } = this.state;
 
     return (
-      <>
+      <div className={styles.headerTopComponents}>
         <SocialNetworkLinks socialNetworks={socialNetworks} />
         <div className={styles.root} data-show-nav={showNav}>
           <h1 className={styles.branding}>
@@ -119,7 +119,7 @@ class Header extends Component {
             </button>
           </nav>
         </div>
-      </>
+      </div>
     );
   }
 }

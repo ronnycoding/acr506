@@ -1,5 +1,5 @@
-@import '../../styles/custom-media.css';
-@import '../../styles/custom-properties.css';
+@import "../../styles/custom-media.css";
+@import "../../styles/custom-properties.css";
 
 .root {
   /* composes: center from '../../styles/shared.module.css'; */
@@ -13,11 +13,12 @@
 
   @media (--media-min-medium) {
     padding-bottom: 4rem;
+    min-height: 700px;
   }
 }
 
 .root::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 0;

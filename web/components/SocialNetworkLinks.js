@@ -42,7 +42,11 @@ const SocialIcon = ({ network, networkLink }) => {
       break;
     case "phone":
       return (
-        <a href={`callto:${networkLink}`} target="_blank" className={styles.socialLink_a}>
+        <a
+          href={`callto:${networkLink.replace(" ", "").replace("-", "")}`}
+          target="_blank"
+          className={styles.socialLink_a}
+        >
           <AiOutlinePhone size={"2em"} />{" "}
           <span className={styles.socialLink_span}>{networkLink}</span>
         </a>
