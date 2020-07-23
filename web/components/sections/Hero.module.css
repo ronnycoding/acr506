@@ -76,6 +76,10 @@
 .ctas {
   margin-top: 3rem;
   display: flex;
+  @media (--media-max-medium) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .ctas > *:not(:first-child) {
@@ -84,4 +88,5 @@
 
 .root p a {
   color: inherit;
+  margin-bottom: 10px;
 }
