@@ -68,6 +68,7 @@ export default class MyDocument extends Document {
             href='/static/favicon/favicon-16x16.png'
           />
           <link rel='manifest' href='/static/favicon/manifest.json' />
+          <link rel='sitemap' type='application/xml' title='Sitemap' href='/static/sitemap/sitemap.xml' />
           <meta name='msapplication-TileColor' content='#000000' />
           <meta name='msapplication-TileImage' content='/static/favicon/ms-icon-144x144.png' />
           <meta name='theme-color' content='#000000' />
