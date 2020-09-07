@@ -32,7 +32,10 @@ const DeployVercel = () => {
       }
     })
       .then(res => res.json())
-      .then(json => setDeployments(json.deployments))
+      .then(json => {
+        setDeployments(json.deployments)
+      })
+      .catch(e => console.error({ e }))
   }
   useEffect(() => {
     updateList()
@@ -52,6 +55,7 @@ const DeployVercel = () => {
         setJobId(json.job.id)
         updateList()
       })
+      .catch(e => console.error({ e }))
   }
   return (
     <div className={styles.container}>
@@ -62,13 +66,17 @@ const DeployVercel = () => {
         {deploying ? 'Deploying...' : 'Deploy'}
       </button>
       <ol className={styles.list}>
-        {deployments.map(deployment => (
-          <li key={deployment.uid}>
-            <p>
-              {new Date(deployment.created).toLocaleString()} ({deployment.state})
-            </p>
-          </li>
-        ))}
+        {deployments ? (
+          deployments.map(deployment => (
+            <li key={deployment.uid}>
+              <p>
+                {new Date(deployment.created).toLocaleString()} ({deployment.state})
+              </p>
+            </li>
+          ))
+        ) : (
+          <p>Por favor contacte al desarrollador</p>
+        )}
       </ol>
     </div>
   )
